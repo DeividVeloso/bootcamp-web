@@ -13,11 +13,11 @@
     Bitcoin Current Price is:
     <span id="price" style="color: green">0</span>
     <form>
-      <input type="radio" onfocus="checkedInput(this)" name="currency" value="usd"> Dollar
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="USD"> Dollar
       <br>
-      <input type="radio" onfocus="checkedInput(this)" name="currency" value="eur"> Euro
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="EUR"> Euro
       <br>
-      <input type="radio" onfocus="checkedInput(this)" name="currency" value="gbp"> Pound
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="GBP"> Pound
     </form>
   </h1>
   <button>Refresh Data</button>
@@ -35,17 +35,9 @@
 
       xml.onreadystatechange = function () {
         if (xml.readyState === 4 && xml.status === 200) {
-          if (currency === 'usd') {
-            span.textContent = '$ ' + JSON.parse(xml.responseText).bpi.USD.rate_float;
-          } else if (currency === 'eur') {
-            span.textContent = 'EU ' + JSON.parse(xml.responseText).bpi.EUR.rate_float;
-          }
-          else if (currency === 'gbp') {
-            span.textContent = 'GBP ' + JSON.parse(xml.responseText).bpi.GBP.rate_float;
-          }
+            span.textContent = currency + ' ' + JSON.parse(xml.responseText).bpi[currency].rate_float;
         }
       }
-
       xml.open('GET', 'https://api.coindesk.com/v1/bpi/currentprice.json');
       xml.send();
     });
