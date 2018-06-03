@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>
+    Bitcoin Current Price is:
+    <span id="price" style="color: green">0</span>
+    <form>
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="usd"> Dollar
+      <br>
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="eur"> Euro
+      <br>
+      <input type="radio" onfocus="checkedInput(this)" name="currency" value="gbp"> Pound
+    </form>
+  </h1>
+  <button>Refresh Data</button>
+  <script>
+    var btn = document.querySelector('button');
+    var span = document.querySelector('#price');
+    var currency
+    
+    function checkedInput(input) {
+      currency = input.value
+    }    
+    
+    btn.addEventListener('click', () => {
+      xml = new XMLHttpRequest();
+
+      xml.onreadystatechange = function () {
+        if (xml.readyState === 4 && xml.status === 200) {
+          if (currency === 'usd') {
+            span.textContent = '$ ' + JSON.parse(xml.responseText).bpi.USD.rate_float;
+          } else if (currency === 'eur') {
+            span.textContent = 'EU ' + JSON.parse(xml.responseText).bpi.EUR.rate_float;
+          }
+          else if (currency === 'gbp') {
+            span.textContent = 'GBP ' + JSON.parse(xml.responseText).bpi.GBP.rate_float;
+          }
+        }
+      }
+
+      xml.open('GET', 'https://api.coindesk.com/v1/bpi/currentprice.json');
+      xml.send();
+    });
+  </script>
+</body>
+
+</html>
