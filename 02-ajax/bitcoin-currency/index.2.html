@@ -31,22 +31,12 @@
     }    
     
     btn.addEventListener('click', () => {
-      fetch('https://api.github.com/users/deividveloso')
-      .then(response => handleErrors(response))
-      .then(response => {
-        console.log("Sucesso", response)
-      })
-      .catch(error => {
-        console.log('Catch', error)
+      fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => response.json())
+      .then(data => {
+        span.textContent = currency + ' ' + data.bpi[currency].rate_float;
       })
     });
-
-    function handleErrors(response) {
-      if(!response.ok){
-        throw Error(`Erro API Status Code ${response.status}`);
-      }
-      return response.json();
-    }
   </script>
 </body>
 
