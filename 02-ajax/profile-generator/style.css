@@ -1,0 +1,57 @@
+.container {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  background: cadetblue; 
+  width: 1000px;
+}
+
+.content {
+  display:flex; 
+  justify-content: center; 
+  align-items: center;
+  background-color: #fff; 
+  border-radius: 4px;
+  padding: 20px;
+  flex: 1;
+  min-width: 450px;
+}
+
+.content-image {
+  flex:1; 
+  align-self: center;
+}
+.image {
+  width: 150px; 
+  height: 100px; 
+  border-radius: 50%;
+}
+
+.data {
+  flex: 2;
+  margin-left: 15px;
+}
+.data-low {
+  margin-top: 20px;
+}
+
+button {
+  flex:1; 
+  align-self: stretch; 
+  height: 50px;
+  border-radius: 4px;
+  background-color: aquamarine;
+  width: 100%;
+  font-size: 30px;
+  color: #fff
+}
+
+#name {
+  font-size: 30px;
+  color: green;
+}
+
+#username {
+  color: blue;
+}

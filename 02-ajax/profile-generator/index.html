@@ -6,23 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div style="display:flex; flex-direction: column; align-items: center; background: cadetblue">
+    <div class="container">
         <h1 style="margin:10">Random User Generator</h1>
-        <div style="display:flex; justify-content: center; background-color: #fff; border-radius: 4px ">
-            <div style="flex:1; align-self: center">
-                <img id='image' style="width: 150px; height: 100px; border-radius: 50%" src="./jon_snow.jpg" alt="">
+        <div class="content">
+            <div class="content-image">
+                <img id='image' class="image" src="./jon_snow.jpg" alt="">
             </div>
-            <div style="flex:2">
+            <div class="data">
                 <div id='name'>Jon Snow</div>
                 <div id='username'>kingofnorth</div>
-                <div>Email: <span id='email'>jon@hotmail.com</span></div>
-                <div>City: <span id='city'>Winterfell</span></div>
+                <div class="data-low">
+                    <div>Email:
+                        <span id='email'>jon@hotmail.com</span>
+                    </div>
+                    <div>City:
+                        <span id='city'>Winterfell</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <button style="flex:1; align-self: center; width: 300px">Next User!</button>
+        <div style="min-width: 480px;">
+            <button>Next User!</button>
+        </div>
     </div>
     <script>
         const image = document.querySelector('#image');
@@ -37,7 +46,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    image.src= data.results[0].picture.medium;
+                    image.src = data.results[0].picture.medium;
                     name.textContent = data.results[0].name.first;
                     email.textContent = data.results[0].email;
                     city.textContent = data.results[0].location.city;
