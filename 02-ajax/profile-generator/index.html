@@ -40,19 +40,36 @@
         const city = document.querySelector('#city');
         const username = document.querySelector('#username')
         const btn = document.querySelector('button');
+        const url = "https://randomuser.me/api/";
+
         btn.addEventListener('click', () => {
-            const url = "https://randomuser.me/api/";
             fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    image.src = data.results[0].picture.medium;
-                    name.textContent = data.results[0].name.first;
-                    email.textContent = data.results[0].email;
-                    city.textContent = data.results[0].location.city;
-                    username.textContent = data.results[0].login.username;
-                })
+                .then(handleErrors)
+                .then(parseJSON)
+                .then(updateProfile)
+                .catch(error => console.log("ERROR", error))
         })
+
+        function parseJSON(response) {
+            return response
+                .json()
+                .then(data => data.results[0])
+        }
+
+        function updateProfile(data) {
+            image.src = data.picture.medium;
+            name.textContent = data.name.first + " " + data.name.last;
+            username.textContent = data.login.username;
+            email.textContent = data.email;
+            city.textContent = data.location.city;
+        }
+
+        function handleErrors(response) {
+            if (!response.ok) {
+                throw Error(response.status)
+            }
+            return response;
+        }
 
     </script>
 </body>
