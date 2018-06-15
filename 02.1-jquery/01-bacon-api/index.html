@@ -9,6 +9,7 @@
 </head>
 <body>
   <button id="btn">Bacon Button</button>
+  <p></p>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script>
@@ -20,7 +21,7 @@
         dataType: 'json'
       })
       .done(function(data){
-        console.log(data)
+        $('p').text(data[0])
       })
       .fail(function(){
         alert("Oh NO! FAILED!")
