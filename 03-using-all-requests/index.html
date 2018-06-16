@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="body">
+    <h1>Ron Swanson Quote Generator</h1>
+    <p>(4 ways of writing AJAX requests)</p>
+    <section class="container">
+      <button id="xhr">XHR</button>
+      <button id="fetch">Fetch</button>
+      <button id="jquery">jQuery</button>
+      <button id="axios">Axios</button>
+    </section>
+
+    <h2 id="message">Deivid Velos is a great guy!!!</h2>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script>
+    var btnXhr = document.querySelector('#xhr');
+    var btnFetch = document.querySelector('#fetch');
+    var btnJquery = $('#jquery');
+    var btnAxios = document.querySelector('#axios');
+    var message = document.querySelector('#message')
+    var url = 'http://ron-swanson-quotes.herokuapp.com/v2/quotes';
+    btnXhr.addEventListener('click', function () {
+      var xml = new XMLHttpRequest();
+
+      xml.onreadystatechange = function () {
+        if (xml.readyState === 4 && xml.status === 200) {
+          var data = JSON.parse(xml.responseText);
+          message.textContent = data[0];
+        }
+      }
+
+      xml.open('GET', url);
+      xml.send();
+    })
+
+    btnFetch.addEventListener('click', function () {
+      fetch(url, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => message.textContent = data[0])
+    })
+
+    btnJquery.click(function () {
+      $.ajax(url, {
+        method: 'GET',
+        dataType: 'json'
+      }).done(data => message.textContent = data[0])
+    })
+
+    btnAxios.addEventListener('click', function () {
+      axios.get(url)
+           .then(response => message.textContent = response.data)
+    })
+
+
+  </script>
+</body>
+
+</html>
