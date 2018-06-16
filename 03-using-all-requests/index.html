@@ -19,12 +19,9 @@
       <button id="jquery">jQuery</button>
       <button id="axios">Axios</button>
     </section>
-
     <h2 id="message">Deivid Velos is a great guy!!!</h2>
-
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
   <script>
     var btnXhr = document.querySelector('#xhr');
@@ -35,14 +32,12 @@
     var url = 'http://ron-swanson-quotes.herokuapp.com/v2/quotes';
     btnXhr.addEventListener('click', function () {
       var xml = new XMLHttpRequest();
-
       xml.onreadystatechange = function () {
         if (xml.readyState === 4 && xml.status === 200) {
           var data = JSON.parse(xml.responseText);
           message.textContent = data[0];
         }
       }
-
       xml.open('GET', url);
       xml.send();
     })
@@ -66,9 +61,6 @@
       axios.get(url)
            .then(response => message.textContent = response.data)
     })
-
-
   </script>
 </body>
-
 </html>
