@@ -1,0 +1,38 @@
+.content {
+  display: flex;
+  width: 519px;
+  padding-left: 60px;
+}
+
+.nav-bar {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  width: 53px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.nav-item {
+  list-style: none;
+  height: 50px;
+  border: 2px solid red;
+}
+
+.nav-bar:hover {
+  width: 200px;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.animated {
+  transition: width 0.4s ease-in-out 0s;
+}
+main {
+  width: 419px;
+  
+}
