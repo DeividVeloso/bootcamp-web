@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const todo = require("./routes/todo");
 
-app.use("/api/v1/todo", todo);
+app.use("/api/todos", todo);
 
 app.listen(port, () => {
   console.log("Listening to PORT " + port);
