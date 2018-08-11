@@ -1,19 +1,19 @@
 const Todo = require("../models/todo");
 const getTodos = (req, res, next) => {
   Todo.find()
-    .then(resp => res.json(resp))
+    .then(resp => res.status(200).json(resp))
     .catch(err => res.send(err));
 };
 
 const postTodos = (req, res, next) => {
   Todo.create(req.body)
-    .then(resp => res.json(resp))
+    .then(resp => res.status(201).json(resp))
     .catch(err => res.send(err));
 };
 
 const getTodoById = (req, res, next) => {
   Todo.findById({ _id: req.params.todoId })
-    .then(resp => res.json(resp))
+    .then(resp => res.status(200).json(resp))
     .catch(err => res.send(err));
 };
 

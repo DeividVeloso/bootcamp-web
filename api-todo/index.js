@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 8080;
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/todos");
@@ -16,9 +16,13 @@ db.once("open", function() {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 
+app.get("/", () => {
+  res.sendFile("index.html");
+});
 const todo = require("./routes/todo");
-
 app.use("/api/todos", todo);
 
 app.listen(port, () => {
