@@ -20,7 +20,7 @@ const getTodoById = (req, res, next) => {
 const putTodo = (req, res, next) => {
   Todo.findByIdAndUpdate(
     { _id: req.params.todoId },
-    { name: req.body.name, completed: req.body.completed },
+    { completed: req.body.completed },
     { new: true }
   )
     .then(resp => res.json(resp))
