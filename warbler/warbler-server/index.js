@@ -1,13 +1,17 @@
+require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 const errorHandler = require("./handlers/error");
+const authRoutes = require("./routes/auth");
 
 const PORT = 8081;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use("/api/auth", authRoutes);
 
 app.use((req, res, next) => {
   let error = new Error("Not Found!");
