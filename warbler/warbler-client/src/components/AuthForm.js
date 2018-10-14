@@ -18,7 +18,10 @@ class AuthForm extends React.Component {
     const authType = this.props.singUp ? "signup" : "signin";
     this.props
       .onAuth(authType, { ...this.state })
-      .then(resp => console.log("OPAAA"));
+      .then(resp => this.props.history.push("/"))
+      .catch(err => {
+        return;
+      });
   }
 
   handleChange(event) {
@@ -29,12 +32,27 @@ class AuthForm extends React.Component {
 
   render() {
     const { email, username, password, profileImageUrl } = this.state;
-    const { heading, buttonText, singUp } = this.props;
+    const {
+      heading,
+      buttonText,
+      singUp,
+      errors,
+      removeError,
+      history
+    } = this.props;
+
+    history.listen(() => {
+      removeError();
+    });
+
     return (
       <div className="row justify-content-md-center text-center">
         <div className="col-md-6">
           <form onSubmit={this.handleSubmit}>
             <h2>{heading}</h2>
+            {errors.message && (
+              <div className="alert alert-danger">{errors.message}</div>
+            )}
             <label htmlFor="email">Email: </label>
             <input
               className="form-control"
