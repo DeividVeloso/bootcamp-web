@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchMessages } from "../store/actions/messages";
+import MessageItem from "../components/MessageItem";
 
 class MessageList extends React.Component {
   componentDidMount() {
@@ -11,18 +12,18 @@ class MessageList extends React.Component {
     const { messages } = this.props;
     let messageList = messages.map(m => {
       console.log("MM", messages);
-      //   return (
-      //   <MessageList
-      //     key={m._id}
-      //     date={m.createAt}
-      //     text={m.text}
-      //     username={m.user.username}
-      //     profileImageUrl={m.user.profileImageUrl}
-      //   />
-      // )
+      return (
+        <MessageItem
+          key={m._id}
+          date={m.createAt}
+          text={m.text}
+          username={m.user.username}
+          profileImageUrl={m.user.profileImageUrl}
+        />
+      );
     });
 
-    return [];
+    return messageList;
   }
 }
 
