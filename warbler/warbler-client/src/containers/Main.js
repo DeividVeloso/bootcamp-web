@@ -50,6 +50,13 @@ const Main = props => {
             );
           }}
         />
+        <Route
+          exact
+          path="/users/:id/message/new"
+          render={props => {
+            return <MessageForm {...props} />;
+          }}
+        />
       </Switch>
     </div>
   );

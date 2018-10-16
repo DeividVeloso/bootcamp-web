@@ -4,7 +4,8 @@ import MessageTimeline from "../components/MessageTimeline";
 
 class Homepage extends React.PureComponent {
   render() {
-    if (!this.props.currentUser.isAuthenticated) {
+    const { currentUser } = this.props;
+    if (!currentUser.isAuthenticated) {
       return (
         <div className="home-hero">
           <h1>What's Happening?</h1>
@@ -18,7 +19,10 @@ class Homepage extends React.PureComponent {
 
     return (
       <div>
-        <MessageTimeline />
+        <MessageTimeline
+          profileImageUrl={currentUser.user.profileImageUrl}
+          username={currentUser.user.username}
+        />
       </div>
     );
   }
