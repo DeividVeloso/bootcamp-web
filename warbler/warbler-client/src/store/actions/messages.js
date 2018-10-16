@@ -8,6 +8,9 @@ export const fetchMessages = () => {
   return dispatch => {
     return apiCall("get", "/api/messages")
       .then(res => dispatch(loadMessages(res)))
-      .catch(err => dispatch(addError(err.message)));
+      .catch(err => {
+        console.log("ENTORU", err);
+        return dispatch(addError(err.message));
+      });
   };
 };

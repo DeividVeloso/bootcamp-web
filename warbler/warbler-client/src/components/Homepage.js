@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MessageTimeline from "../components/MessageTimeline";
 
 class Homepage extends React.PureComponent {
   render() {
@@ -15,7 +16,11 @@ class Homepage extends React.PureComponent {
       );
     }
 
-    return <div>Olha</div>;
+    return (
+      <div>
+        <MessageTimeline />
+      </div>
+    );
   }
 }
 export default Homepage;
